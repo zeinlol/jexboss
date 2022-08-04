@@ -21,7 +21,7 @@ from csv import DictWriter
 
 from jexboss import check_vul
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Sean Whalen - @SeanTheGeek"
 
 args = ArgumentParser(description=__doc__)
@@ -30,14 +30,13 @@ args.add_argument("output", help="Path to the output file")
 args = args.parse_args()
 
 paths = {"jmx-console": "/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.system:type=ServerInfo",
-         "web-console" 		: "/web-console/ServerInfo.jsp",
+         "web-console": "/web-console/ServerInfo.jsp",
          "JMXInvokerServlet": "/invoker/JMXInvokerServlet"}
 
 results = []
 
 with open(args.input, "r") as input_file:
     urls = input_file.readlines()
-
 
 for url in urls:
     if url == "":
@@ -49,7 +48,7 @@ for url in urls:
         url = url[:-1]
 
     url_results = check_vul(url)
-    for key in url_results.keys():
+    for key in list(url_results.keys()):
         if url_results[key] == 200 or url_results[key] == 500:
             full_url = "{0}{1}".format(url, paths[key])
             result = dict(base_url=url, vulnerability=key, full_url=full_url, status_code=url_results[key])

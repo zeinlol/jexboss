@@ -5,7 +5,7 @@ JexBoss is a tool for testing and exploiting vulnerabilities in JBoss Applicatio
 
 Requirements
 ----
-* Python >= 2.7.x
+* Python >= 3.10.x
 * [urllib3](https://pypi.python.org/pypi/urllib3)
 * [ipaddress](https://pypi.python.org/pypi/ipaddress)
 
@@ -15,9 +15,9 @@ To install the latest version of JexBoss, please use the following commands:
 
 	git clone https://github.com/joaomatosf/jexboss.git
 	cd jexboss
-	pip install -r requires.txt
-	python jexboss.py -h
-	python jexboss.py -host http://target_host:8080
+	pip3 install -r requires.txt
+	python3 jexboss.py -h
+	python3 jexboss.py -host http://target_host:8080
 
 	OR:
 
